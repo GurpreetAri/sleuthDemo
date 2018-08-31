@@ -1,0 +1,48 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.4.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.demo.sleuth'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+ext {
+    springCloudVersion = 'Finchley.SR1'
+}
+
+dependencies {
+
+    // compile("org.springframework.boot:spring-boot-starter-parent:2.0.4.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-parent:1.4.1.RELEASE")
+    compile("org.springframework.cloud:spring-cloud-starter-sleuth:2.0.1.RELEASE")
+    //compile("org.springframework.cloud:spring-cloud-starter-sleuth:1.2.4.RELEASE")
+    // compile('org.springframework.cloud:spring-cloud-sleuth-zipkin:2.0.1.RELEASE')
+    // compile("org.springframework.boot:spring-boot-starter-web:2.0.4.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-web:1.4.1.RELEASE")
+    compile("org.springframework:spring-web:5.0.8.RELEASE")
+    testCompile("org.springframework.boot:spring-boot-starter-test:2.0.2.RELEASE")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
